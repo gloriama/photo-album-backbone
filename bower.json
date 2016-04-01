@@ -1,0 +1,19 @@
+{
+  "name": "photo-album-backbone",
+  "version": "1.0.0",
+  "authors": [
+    "Gloria Ma <gloria.ma@aya.yale.edu>"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2",
+    "backbone": "~1.0.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
