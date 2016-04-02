@@ -1,9 +1,9 @@
 var ViewportView = Backbone.View.extend({
   initialize: function() {
-    this.updaterView = new UpdaterView({
-      model: this.model
-    });
     this.render();
+    this.model.on('change', function() {
+      this.render();
+    }.bind(this));
   },
 
   template: _.template(
@@ -13,13 +13,16 @@ var ViewportView = Backbone.View.extend({
 
   setCurrentPhoto: function(model) {
     this.model = model;
-    this.render();
+    this.initialize();
   },
 
   render: function() {
     this.$el.empty();
-    this.$el.html(this.template(this.model.attributes));
-    this.$el.append(this.updaterView.render());
+    this.$el.append($(this.template(this.model.attributes)));
+    var updaterView = new UpdaterView({
+      model: this.model
+    });
+    this.$el.append(updaterView.render());
     return this.$el;
   }
 })
