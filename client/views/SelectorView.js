@@ -8,9 +8,11 @@ var SelectorView = Backbone.View.extend({
 
   render: function() {
     this.$el.empty();
-    this.$el.append(this.collection.map(function(photo) {
+    var tbody = $('<tbody>');
+    tbody.append(this.collection.map(function(photo) {
       return new SelectorEntryView({ model: photo }).render();
     }));
+    this.$el.append(tbody);
     return this.$el;
   }
 });

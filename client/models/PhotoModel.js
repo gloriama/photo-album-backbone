@@ -8,5 +8,9 @@ var PhotoModel = Backbone.Model.extend({
   initialize: function(params) {
     this.set('title', params.title);
     this.set('url', params.url);
+  },
+
+  setCurrentPhoto: function() {
+    this.trigger('setCurrentPhoto', this);
   }
 });
