@@ -1,5 +1,5 @@
 var ViewportView = Backbone.View.extend({
-  template: _.template('<p><%= title %></p><img src="<%= url %>" width="400" />'),
+  template: _.template('<p><%= title %></p><img src="<%= url %>" width="400" /><p>Rating: <%= rating %></p>'),
 
   setCurrentPhoto: function(model) {
     this.model = model;
@@ -7,10 +7,7 @@ var ViewportView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template({
-      title: this.model.get('title'),
-      url: this.model.get('url')
-    }));
+    this.$el.html(this.template(this.model.attributes));
     return this.$el;
   }
 })
