@@ -1,6 +1,6 @@
 var AppModel = Backbone.Model.extend({
   initialize: function(params) {
-    this.set('photos', params.photos);
-    this.set('currentPhoto', params.photos[0]);
+    this.set('photos', params.collection);
+    this.set('currentPhoto', params.collection.at(0));
   }
 });

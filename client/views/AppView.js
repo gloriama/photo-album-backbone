@@ -3,28 +3,27 @@ var AppView = Backbone.View.extend({
     this.render();
   },
 
-  selectorTemplate: _.template('<tr><td><%= photo.title %></td></tr>'),
+  events: {
+    click: function(e) {
+      console.log(e.target.innerText);
+    }
+  },
 
-  viewPortTemplate: _.template('<p><%= currentPhoto.title %></p><img src="<%= currentPhoto.url %>" />'),
+  viewPortTemplate: _.template('<p><%= title %></p><img src="<%= url %>" />'),
 
   render: function() {
     // Selector
-    var selector = $('<table>');
-    var that = this;
-    selector.html(this.model.get('photos').map(function(photo) {
-      return that.selectorTemplate({
-        photo: photo
-      });
-    }));
+    var selectorView = new SelectorView({ collection: this.model.get('photos') });
 
     // ViewPort
     var viewPort = $('<div>');
     viewPort.html(this.viewPortTemplate({
-      currentPhoto: this.model.get('currentPhoto')
+      title: this.model.get('currentPhoto').get('title'),
+      url: this.model.get('currentPhoto').get('url')
     }));
 
     this.$el.html('<p>Photo Album</p>');
-    this.$el.append(selector);
+    this.$el.append(selectorView.render());
     this.$el.append(viewPort);
 
     return this.$el;
