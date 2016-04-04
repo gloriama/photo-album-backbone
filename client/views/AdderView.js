@@ -5,6 +5,15 @@ var AdderView = Backbone.View.extend({
     this.$submitButton = $('<input type="button" value="Submit" />');
   },
 
+  events: {
+    'click input[type=button]': function() {
+      this.collection.add({
+        title: this.$titleInput.val(),
+        url: this.$urlInput.val()
+      });
+    }
+  },
+
   render: function() {
     this.$el.html([
       this.$titleInput,

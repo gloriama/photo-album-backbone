@@ -3,6 +3,7 @@ var SelectorView = Backbone.View.extend({
   tagName: 'table',
 
   initialize: function() {
+    this.collection.on('add', this.render, this);
     this.render();
   },
 
